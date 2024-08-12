@@ -9,7 +9,11 @@ namespace SeagullSama.Controller
     {
         override public void Activate()
         {
+            SeagullController seagullController = SeagullController.Instance;
+            seagullController.maxJumpCount = 2;
             Debug.Log("DoubleJumpAbility Activate");
+            Debug.Log("SeagullSama can jump twice now!");
+            SeagullSama.Instance.GetManager<IAbilityManager>().UnEquipAbilityByName(AbilityName);
         }
 
         override public void Deactivate()

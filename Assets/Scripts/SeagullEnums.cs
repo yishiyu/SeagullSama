@@ -7,6 +7,7 @@ namespace SeagullSama
 {
     public enum EPickableItemType
     {
+        GeneralItem,
         AbilityStone,
     }
 

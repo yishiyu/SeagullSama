@@ -43,6 +43,22 @@ namespace SeagullSama.Controller
 
     public class SeagullController : MonoBehaviour
     {
+        private static SeagullController _instance;
+
+        public static SeagullController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<SeagullController>();
+                }
+
+                return _instance;
+            }
+        }
+
+
         #region 控制器配置
 
         [Header("Configuration"), Tooltip("最大移动速度")]
@@ -81,6 +97,9 @@ namespace SeagullSama.Controller
         [Tooltip("吞噬强度")]
         public float swallowForce = 10.0f;
 
+        [Tooltip("连续跳跃次数")]
+        public int maxJumpCount = 1;
+
         #endregion
 
 
@@ -99,6 +118,7 @@ namespace SeagullSama.Controller
         private float _targetBodyYaw = 0.0f;
         private bool _isMoving = false;
         private bool _isJumping = false;
+        private int _currentJumpCount = 0;
         private bool _isSwallowing = false;
 
         private Rigidbody _rigidbody;
@@ -151,14 +171,15 @@ namespace SeagullSama.Controller
             _swallowInput.performed -= StartSwallowing;
         }
 
-        private void StartJumping(InputAction.CallbackContext context)
+        public void StartJumping(InputAction.CallbackContext context)
         {
-            if (_isJumping)
+            if (_currentJumpCount >= maxJumpCount)
             {
                 return;
             }
 
             _isJumping = true;
+            _currentJumpCount++;
 
             // 根据跳跃速度跳起来(设置一个向上的冲量)
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -172,6 +193,7 @@ namespace SeagullSama.Controller
             }
 
             _isJumping = false;
+            _currentJumpCount = 0;
         }
 
         private void PickupItem(GameObject item)
@@ -193,6 +215,9 @@ namespace SeagullSama.Controller
                         _abilityManager.EquipAbility(abilityName);
 
                         break;
+                    case EPickableItemType.GeneralItem:
+                        Debug.Log("Picked up a general item");
+                        break;
                     default:
                         break;
                 }
@@ -203,10 +228,13 @@ namespace SeagullSama.Controller
 
         private void OnCollisionEnter(Collision collision)
         {
-            // 判断是否实现了 IPickableItem 接口
-            if (collision.gameObject.GetComponent<IPickableItem>() != null)
+            if (_isSwallowing)
             {
-                PickupItem(collision.gameObject);
+                // 判断是否实现了 IPickableItem 接口
+                if (collision.gameObject.GetComponent<IPickableItem>() != null)
+                {
+                    PickupItem(collision.gameObject);
+                }
             }
         }
 

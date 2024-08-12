@@ -1661,6 +1661,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
+      propertyPath: maxJumpCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
+      propertyPath: swallowForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
       propertyPath: headRotationMax
       value: 45
       objectReference: {fileID: 0}
