@@ -9,14 +9,15 @@ namespace SeagullSama.Controller
     public class TestAbility : SeagullAbility
     {
         private IDebugUtility _debugUtility;
+        private GameObject _prefab;
 
         override public void Activate()
         {
+            _prefab = Resources.Load<GameObject>("GeneralPickableItem");
+
             // 发射一个物体
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = SeagullController.Instance.transform.position + new Vector3(0, 1, 0);
-            cube.AddComponent<PickableItemController>();
-            cube.AddComponent<Rigidbody>();
+            GameObject cube = GameObject.Instantiate(
+                _prefab, SeagullController.Instance.transform.position + Vector3.up, Quaternion.identity);
             cube.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
 
             if (_debugUtility == null)
