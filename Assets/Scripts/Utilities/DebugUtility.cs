@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using SeagullSama.Core;
@@ -7,21 +8,32 @@ namespace SeagullSama.Utility
 {
     public interface IDebugUtility : IUtility
     {
+        public Action<string> OnPrintToScreen { get; set; }
+
         public Material GetGizmosMaterial(int index);
+
+        public void PrintToScreen(string message);
     }
 
     public class DebugUtility : IDebugUtility
     {
-        private Material[] gizmosMaterials;
+        private Material[] _gizmosMaterials;
+        private Action<string> _onPrintToScreen;
+
+        public Action<string> OnPrintToScreen
+        {
+            get => _onPrintToScreen;
+            set => _onPrintToScreen = value;
+        }
 
         public void Init()
         {
             Debug.Log("DebugUtility Init");
 
             // 读取 Assets/Resources/Materials/GizmosMaterials 文件夹下的所有材质
-            gizmosMaterials = Resources.LoadAll<Material>("Materials/GizmosMaterials");
+            _gizmosMaterials = Resources.LoadAll<Material>("Materials/GizmosMaterials");
 
-            if (gizmosMaterials.Length == 0)
+            if (_gizmosMaterials.Length == 0)
             {
                 Debug.LogError("GizmosMaterials is empty");
             }
@@ -29,8 +41,13 @@ namespace SeagullSama.Utility
 
         public Material GetGizmosMaterial(int index)
         {
-            index = index % gizmosMaterials.Length;
-            return gizmosMaterials[index];
+            index = index % _gizmosMaterials.Length;
+            return _gizmosMaterials[index];
+        }
+
+        public void PrintToScreen(string message)
+        {
+            _onPrintToScreen?.Invoke(message);
         }
     }
 }
