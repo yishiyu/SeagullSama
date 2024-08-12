@@ -250,8 +250,30 @@ namespace SeagullSama.Utility
         {
             ""name"": ""GameModeActions"",
             ""id"": ""cbcaae17-6402-475e-a0d5-6ebb862e26bd"",
-            ""actions"": [],
-            ""bindings"": []
+            ""actions"": [
+                {
+                    ""name"": ""PauseGameAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6c7216a-787d-41c3-b3e7-e1ca2609a6bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""183e0382-aa26-4a25-98d9-3e5b9830dc37"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGameAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         },
         {
             ""name"": ""AbilityActions"",
@@ -397,6 +419,7 @@ namespace SeagullSama.Utility
             m_CameraActions_RotateCameraView = m_CameraActions.FindAction("RotateCameraView", throwIfNotFound: true);
             // GameModeActions
             m_GameModeActions = asset.FindActionMap("GameModeActions", throwIfNotFound: true);
+            m_GameModeActions_PauseGameAction = m_GameModeActions.FindAction("PauseGameAction", throwIfNotFound: true);
             // AbilityActions
             m_AbilityActions = asset.FindActionMap("AbilityActions", throwIfNotFound: true);
             m_AbilityActions_ActiveAbilityAction1 = m_AbilityActions.FindAction("ActiveAbilityAction1", throwIfNotFound: true);
@@ -598,10 +621,12 @@ namespace SeagullSama.Utility
         // GameModeActions
         private readonly InputActionMap m_GameModeActions;
         private List<IGameModeActionsActions> m_GameModeActionsActionsCallbackInterfaces = new List<IGameModeActionsActions>();
+        private readonly InputAction m_GameModeActions_PauseGameAction;
         public struct GameModeActionsActions
         {
             private @SeagullInput m_Wrapper;
             public GameModeActionsActions(@SeagullInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @PauseGameAction => m_Wrapper.m_GameModeActions_PauseGameAction;
             public InputActionMap Get() { return m_Wrapper.m_GameModeActions; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -611,10 +636,16 @@ namespace SeagullSama.Utility
             {
                 if (instance == null || m_Wrapper.m_GameModeActionsActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_GameModeActionsActionsCallbackInterfaces.Add(instance);
+                @PauseGameAction.started += instance.OnPauseGameAction;
+                @PauseGameAction.performed += instance.OnPauseGameAction;
+                @PauseGameAction.canceled += instance.OnPauseGameAction;
             }
 
             private void UnregisterCallbacks(IGameModeActionsActions instance)
             {
+                @PauseGameAction.started -= instance.OnPauseGameAction;
+                @PauseGameAction.performed -= instance.OnPauseGameAction;
+                @PauseGameAction.canceled -= instance.OnPauseGameAction;
             }
 
             public void RemoveCallbacks(IGameModeActionsActions instance)
@@ -733,6 +764,7 @@ namespace SeagullSama.Utility
         }
         public interface IGameModeActionsActions
         {
+            void OnPauseGameAction(InputAction.CallbackContext context);
         }
         public interface IAbilityActionsActions
         {
