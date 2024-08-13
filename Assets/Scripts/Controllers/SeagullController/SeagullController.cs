@@ -313,6 +313,14 @@ namespace SeagullSama.Controller
             {
                 // 非跳跃状态下,根据输入加速减速
                 Vector2 movementValue = _movementInput.ReadValue<Vector2>();
+                Vector3 cameraForward3d = Camera.main.transform.forward;
+                Vector2 cameraForward2d = new Vector2(cameraForward3d.x, cameraForward3d.z).normalized;
+
+                movementValue = new Vector2(
+                    cameraForward2d.x * movementValue.y + cameraForward2d.y * movementValue.x,
+                    cameraForward2d.y * movementValue.y - cameraForward2d.x * movementValue.x
+                );
+
 
                 if (movementValue.magnitude > 0.1f)
                 {
