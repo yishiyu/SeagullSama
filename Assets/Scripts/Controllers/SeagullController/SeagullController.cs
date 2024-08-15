@@ -214,7 +214,7 @@ namespace SeagullSama.Controller
             }
 
             PickableItemController pickableItem = item.GetComponent<PickableItemController>();
-            if (pickableItem != null)
+            if (pickableItem != null && pickableItem.itemSwallowLevel <= swallowLevel)
             {
                 // 处理物体专有的属性
                 switch (pickableItem.pickableItemType)
@@ -239,9 +239,8 @@ namespace SeagullSama.Controller
                 swallowRadius += pickableItem.itemSwallowRadiusPower;
                 swallowDepth += pickableItem.itemSwallowDepthPower;
                 swallowLevel += pickableItem.itemSwallowLevelPower;
+                Destroy(item);
             }
-
-            Destroy(item);
         }
 
         private void OnCollisionEnter(Collision collision)
