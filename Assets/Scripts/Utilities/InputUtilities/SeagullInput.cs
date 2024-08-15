@@ -171,7 +171,7 @@ namespace SeagullSama.Utility
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeToPreviousCameraAction1"",
+                    ""name"": ""ChangeToPreviousCameraAction"",
                     ""type"": ""Button"",
                     ""id"": ""3cf9cff5-77ce-4310-bb45-99b6fb1bccc2"",
                     ""expectedControlType"": ""Button"",
@@ -180,9 +180,27 @@ namespace SeagullSama.Utility
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RotateCameraView"",
+                    ""name"": ""ZoomCameraView"",
+                    ""type"": ""Value"",
+                    ""id"": ""63a5bf5d-7311-4070-9396-f3d7427edf68"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCameraYaw"",
                     ""type"": ""Value"",
                     ""id"": ""0606bbde-c50b-4de9-9714-4424f63b24d2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCameraPitch"",
+                    ""type"": ""Value"",
+                    ""id"": ""b52890ac-ddb9-49f3-983f-89af360c39d9"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -208,9 +226,42 @@ namespace SeagullSama.Utility
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeToPreviousCameraAction1"",
+                    ""action"": ""ChangeToPreviousCameraAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""id"": ""fc1e1bf5-4f7d-4cdb-9e39-81884e1fc990"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomCameraView"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""95ad964b-2bf2-496b-b58c-2e986def787d"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomCameraView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""66b9c0a0-28a6-4798-94d5-9eb223db1215"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomCameraView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Keyboard"",
@@ -219,7 +270,7 @@ namespace SeagullSama.Utility
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotateCameraView"",
+                    ""action"": ""RotateCameraYaw"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -230,7 +281,7 @@ namespace SeagullSama.Utility
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotateCameraView"",
+                    ""action"": ""RotateCameraYaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -241,7 +292,40 @@ namespace SeagullSama.Utility
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotateCameraView"",
+                    ""action"": ""RotateCameraYaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""46a25397-fc2a-46a4-acc3-34c7f670b82d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCameraPitch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""aab482a7-978f-43f4-ae8c-2ca680059cae"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCameraPitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""77cf8a35-8f3a-485a-9d4b-120dd081894f"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCameraPitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -415,8 +499,10 @@ namespace SeagullSama.Utility
             // CameraActions
             m_CameraActions = asset.FindActionMap("CameraActions", throwIfNotFound: true);
             m_CameraActions_ChangeToNextCameraAction = m_CameraActions.FindAction("ChangeToNextCameraAction", throwIfNotFound: true);
-            m_CameraActions_ChangeToPreviousCameraAction1 = m_CameraActions.FindAction("ChangeToPreviousCameraAction1", throwIfNotFound: true);
-            m_CameraActions_RotateCameraView = m_CameraActions.FindAction("RotateCameraView", throwIfNotFound: true);
+            m_CameraActions_ChangeToPreviousCameraAction = m_CameraActions.FindAction("ChangeToPreviousCameraAction", throwIfNotFound: true);
+            m_CameraActions_ZoomCameraView = m_CameraActions.FindAction("ZoomCameraView", throwIfNotFound: true);
+            m_CameraActions_RotateCameraYaw = m_CameraActions.FindAction("RotateCameraYaw", throwIfNotFound: true);
+            m_CameraActions_RotateCameraPitch = m_CameraActions.FindAction("RotateCameraPitch", throwIfNotFound: true);
             // GameModeActions
             m_GameModeActions = asset.FindActionMap("GameModeActions", throwIfNotFound: true);
             m_GameModeActions_PauseGameAction = m_GameModeActions.FindAction("PauseGameAction", throwIfNotFound: true);
@@ -560,15 +646,19 @@ namespace SeagullSama.Utility
         private readonly InputActionMap m_CameraActions;
         private List<ICameraActionsActions> m_CameraActionsActionsCallbackInterfaces = new List<ICameraActionsActions>();
         private readonly InputAction m_CameraActions_ChangeToNextCameraAction;
-        private readonly InputAction m_CameraActions_ChangeToPreviousCameraAction1;
-        private readonly InputAction m_CameraActions_RotateCameraView;
+        private readonly InputAction m_CameraActions_ChangeToPreviousCameraAction;
+        private readonly InputAction m_CameraActions_ZoomCameraView;
+        private readonly InputAction m_CameraActions_RotateCameraYaw;
+        private readonly InputAction m_CameraActions_RotateCameraPitch;
         public struct CameraActionsActions
         {
             private @SeagullInput m_Wrapper;
             public CameraActionsActions(@SeagullInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @ChangeToNextCameraAction => m_Wrapper.m_CameraActions_ChangeToNextCameraAction;
-            public InputAction @ChangeToPreviousCameraAction1 => m_Wrapper.m_CameraActions_ChangeToPreviousCameraAction1;
-            public InputAction @RotateCameraView => m_Wrapper.m_CameraActions_RotateCameraView;
+            public InputAction @ChangeToPreviousCameraAction => m_Wrapper.m_CameraActions_ChangeToPreviousCameraAction;
+            public InputAction @ZoomCameraView => m_Wrapper.m_CameraActions_ZoomCameraView;
+            public InputAction @RotateCameraYaw => m_Wrapper.m_CameraActions_RotateCameraYaw;
+            public InputAction @RotateCameraPitch => m_Wrapper.m_CameraActions_RotateCameraPitch;
             public InputActionMap Get() { return m_Wrapper.m_CameraActions; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -581,12 +671,18 @@ namespace SeagullSama.Utility
                 @ChangeToNextCameraAction.started += instance.OnChangeToNextCameraAction;
                 @ChangeToNextCameraAction.performed += instance.OnChangeToNextCameraAction;
                 @ChangeToNextCameraAction.canceled += instance.OnChangeToNextCameraAction;
-                @ChangeToPreviousCameraAction1.started += instance.OnChangeToPreviousCameraAction1;
-                @ChangeToPreviousCameraAction1.performed += instance.OnChangeToPreviousCameraAction1;
-                @ChangeToPreviousCameraAction1.canceled += instance.OnChangeToPreviousCameraAction1;
-                @RotateCameraView.started += instance.OnRotateCameraView;
-                @RotateCameraView.performed += instance.OnRotateCameraView;
-                @RotateCameraView.canceled += instance.OnRotateCameraView;
+                @ChangeToPreviousCameraAction.started += instance.OnChangeToPreviousCameraAction;
+                @ChangeToPreviousCameraAction.performed += instance.OnChangeToPreviousCameraAction;
+                @ChangeToPreviousCameraAction.canceled += instance.OnChangeToPreviousCameraAction;
+                @ZoomCameraView.started += instance.OnZoomCameraView;
+                @ZoomCameraView.performed += instance.OnZoomCameraView;
+                @ZoomCameraView.canceled += instance.OnZoomCameraView;
+                @RotateCameraYaw.started += instance.OnRotateCameraYaw;
+                @RotateCameraYaw.performed += instance.OnRotateCameraYaw;
+                @RotateCameraYaw.canceled += instance.OnRotateCameraYaw;
+                @RotateCameraPitch.started += instance.OnRotateCameraPitch;
+                @RotateCameraPitch.performed += instance.OnRotateCameraPitch;
+                @RotateCameraPitch.canceled += instance.OnRotateCameraPitch;
             }
 
             private void UnregisterCallbacks(ICameraActionsActions instance)
@@ -594,12 +690,18 @@ namespace SeagullSama.Utility
                 @ChangeToNextCameraAction.started -= instance.OnChangeToNextCameraAction;
                 @ChangeToNextCameraAction.performed -= instance.OnChangeToNextCameraAction;
                 @ChangeToNextCameraAction.canceled -= instance.OnChangeToNextCameraAction;
-                @ChangeToPreviousCameraAction1.started -= instance.OnChangeToPreviousCameraAction1;
-                @ChangeToPreviousCameraAction1.performed -= instance.OnChangeToPreviousCameraAction1;
-                @ChangeToPreviousCameraAction1.canceled -= instance.OnChangeToPreviousCameraAction1;
-                @RotateCameraView.started -= instance.OnRotateCameraView;
-                @RotateCameraView.performed -= instance.OnRotateCameraView;
-                @RotateCameraView.canceled -= instance.OnRotateCameraView;
+                @ChangeToPreviousCameraAction.started -= instance.OnChangeToPreviousCameraAction;
+                @ChangeToPreviousCameraAction.performed -= instance.OnChangeToPreviousCameraAction;
+                @ChangeToPreviousCameraAction.canceled -= instance.OnChangeToPreviousCameraAction;
+                @ZoomCameraView.started -= instance.OnZoomCameraView;
+                @ZoomCameraView.performed -= instance.OnZoomCameraView;
+                @ZoomCameraView.canceled -= instance.OnZoomCameraView;
+                @RotateCameraYaw.started -= instance.OnRotateCameraYaw;
+                @RotateCameraYaw.performed -= instance.OnRotateCameraYaw;
+                @RotateCameraYaw.canceled -= instance.OnRotateCameraYaw;
+                @RotateCameraPitch.started -= instance.OnRotateCameraPitch;
+                @RotateCameraPitch.performed -= instance.OnRotateCameraPitch;
+                @RotateCameraPitch.canceled -= instance.OnRotateCameraPitch;
             }
 
             public void RemoveCallbacks(ICameraActionsActions instance)
@@ -759,8 +861,10 @@ namespace SeagullSama.Utility
         public interface ICameraActionsActions
         {
             void OnChangeToNextCameraAction(InputAction.CallbackContext context);
-            void OnChangeToPreviousCameraAction1(InputAction.CallbackContext context);
-            void OnRotateCameraView(InputAction.CallbackContext context);
+            void OnChangeToPreviousCameraAction(InputAction.CallbackContext context);
+            void OnZoomCameraView(InputAction.CallbackContext context);
+            void OnRotateCameraYaw(InputAction.CallbackContext context);
+            void OnRotateCameraPitch(InputAction.CallbackContext context);
         }
         public interface IGameModeActionsActions
         {

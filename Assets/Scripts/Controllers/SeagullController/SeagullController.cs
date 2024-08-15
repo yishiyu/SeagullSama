@@ -58,6 +58,15 @@ namespace SeagullSama.Controller
             }
         }
 
+        [Tooltip("头部组件")]
+        public Transform headTransform;
+
+        [Tooltip("吞噬平面中心点")]
+        public Transform swallowCenter;
+
+        [Tooltip("着陆检测器")]
+        public OnLandDetector onLandDetector;
+
 
         #region 控制器配置
 
@@ -73,9 +82,6 @@ namespace SeagullSama.Controller
         [Tooltip("旋转速度")]
         public float rotateSpeed = 5.0f;
 
-        [Tooltip("头部组件")]
-        public Transform headTransform;
-
         [Tooltip("头部旋转角度上限")]
         public float headRotationMax = 90.0f;
 
@@ -84,9 +90,6 @@ namespace SeagullSama.Controller
 
         [Tooltip("跳跃力量")]
         public float jumpForce = 5.0f;
-
-        [Tooltip("吞噬平面中心点")]
-        public Transform swallowCenter;
 
         [Tooltip("吞噬平面半径")]
         public float swallowRadius = 5.0f;
@@ -102,8 +105,6 @@ namespace SeagullSama.Controller
 
         #endregion
 
-
-        public OnLandDetector onLandDetector;
 
         private IDebugUtility _debugUtility;
         private IAbilityManager _abilityManager;

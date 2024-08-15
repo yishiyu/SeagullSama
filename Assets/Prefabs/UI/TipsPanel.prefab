@@ -67,7 +67,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "ESC: \u663E\u793A/\u5173\u95ED \u83DC\u5355\n\u9F20\u6807\u5DE6\u952E:
     \u5438\u53D6\u5468\u56F4\u7269\u4F53\nWASD: \u6C34\u5E73\u79FB\u52A8\n\u7A7A\u683C:
-    \u8DF3\u8DC3\n\u9F20\u6807: \u63A7\u5236\u671D\u5411\n123456: \u4F7F\u7528\u5438\u6536\u7684\u6280\u80FD"
+    \u8DF3\u8DC3\n\u9F20\u6807: \u63A7\u5236\u671D\u5411\n123456: \u4F7F\u7528\u5438\u6536\u7684\u6280\u80FD\n[]:
+    \u63A7\u5236\u5207\u6362\u76F8\u673A\nOP: \u63A7\u5236\u76F8\u673A\u4FEF\u4EF0\u89D2\n\u9F20\u6807\u6EDA\u8F6E:
+    \u63A7\u5236\u76F8\u673A\u7F29\u653E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9386c2d4ed87db74a9d3debc94803525, type: 2}
   m_sharedMaterial: {fileID: -303755992510885823, guid: 9386c2d4ed87db74a9d3debc94803525, type: 2}
@@ -102,7 +104,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

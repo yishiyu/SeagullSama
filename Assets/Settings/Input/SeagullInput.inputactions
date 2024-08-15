@@ -147,7 +147,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeToPreviousCameraAction1",
+                    "name": "ChangeToPreviousCameraAction",
                     "type": "Button",
                     "id": "3cf9cff5-77ce-4310-bb45-99b6fb1bccc2",
                     "expectedControlType": "Button",
@@ -156,9 +156,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RotateCameraView",
+                    "name": "ZoomCameraView",
+                    "type": "Value",
+                    "id": "63a5bf5d-7311-4070-9396-f3d7427edf68",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RotateCameraYaw",
                     "type": "Value",
                     "id": "0606bbde-c50b-4de9-9714-4424f63b24d2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RotateCameraPitch",
+                    "type": "Value",
+                    "id": "b52890ac-ddb9-49f3-983f-89af360c39d9",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -184,9 +202,42 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeToPreviousCameraAction1",
+                    "action": "ChangeToPreviousCameraAction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Mouse",
+                    "id": "fc1e1bf5-4f7d-4cdb-9e39-81884e1fc990",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomCameraView",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "95ad964b-2bf2-496b-b58c-2e986def787d",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomCameraView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "66b9c0a0-28a6-4798-94d5-9eb223db1215",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomCameraView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Keyboard",
@@ -195,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateCameraView",
+                    "action": "RotateCameraYaw",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -206,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateCameraView",
+                    "action": "RotateCameraYaw",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -217,7 +268,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateCameraView",
+                    "action": "RotateCameraYaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "46a25397-fc2a-46a4-acc3-34c7f670b82d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraPitch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "aab482a7-978f-43f4-ae8c-2ca680059cae",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraPitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "77cf8a35-8f3a-485a-9d4b-120dd081894f",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraPitch",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
