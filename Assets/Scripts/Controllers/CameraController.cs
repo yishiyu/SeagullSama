@@ -22,7 +22,7 @@ namespace SeagullSama.Controller
         public float cameraRotateSpeed = 5.0f;
 
         [Tooltip("相机俯视角度")]
-        public float cameraPitchAngle = 45.0f;
+        public float cameraPitchAngle = 35.0f;
 
         [Tooltip("相机最大俯视角度")]
         public float cameraMaxPitchAngle = 85.0f;
@@ -31,13 +31,13 @@ namespace SeagullSama.Controller
         public float cameraMinPitchAngle = 5.0f;
 
         [Tooltip("相机距离")]
-        public float cameraDistance = 15.0f;
+        public float cameraDistance = 20.0f;
 
         [Tooltip("相机最大高度")]
         public float cameraMaxDistance = 30.0f;
 
         [Tooltip("相机最小高度")]
-        public float cameraMinDistance = 5.0f;
+        public float cameraMinDistance = 10.0f;
 
         #endregion
 

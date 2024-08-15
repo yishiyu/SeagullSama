@@ -100,6 +100,9 @@ namespace SeagullSama.Controller
         [Tooltip("吞噬强度")]
         public float swallowForce = 10.0f;
 
+        [Tooltip("吞噬等级")]
+        public float swallowLevel = 1.0f;
+
         [Tooltip("连续跳跃次数")]
         public int maxJumpCount = 1;
 
@@ -174,7 +177,7 @@ namespace SeagullSama.Controller
 
         public void StartJumping(InputAction.CallbackContext context)
         {
-            if (_currentJumpCount >= maxJumpCount)
+            if (_currentJumpCount >= maxJumpCount || _isSwallowing)
             {
                 return;
             }
@@ -204,24 +207,32 @@ namespace SeagullSama.Controller
                 return;
             }
 
-            IPickableItem pickableItem = item.GetComponent<IPickableItem>();
+            PickableItemController pickableItem = item.GetComponent<PickableItemController>();
             if (pickableItem != null)
             {
-                switch (pickableItem.PickableItemType)
+                // 处理物体专有的属性
+                switch (pickableItem.pickableItemType)
                 {
                     case EPickableItemType.AbilityStone:
                         string abilityName = pickableItem.GetItem() as string;
-
                         // 装备技能
                         _abilityManager.EquipAbility(abilityName);
-
+                        Debug.Log("Picked up an ability stone");
+                        _debugUtility.PrintToScreen("Picked up an ability stone");
                         break;
                     case EPickableItemType.GeneralItem:
                         Debug.Log("Picked up a general item");
+                        _debugUtility.PrintToScreen("Picked up a general item");
                         break;
                     default:
                         break;
                 }
+
+                // 处理物体通用的属性
+                swallowForce += pickableItem.itemSwallowForcePower;
+                swallowRadius += pickableItem.itemSwallowRadiusPower;
+                swallowDepth += pickableItem.itemSwallowDepthPower;
+                swallowLevel += pickableItem.itemSwallowLevelPower;
             }
 
             Destroy(item);
@@ -232,7 +243,7 @@ namespace SeagullSama.Controller
             if (_isSwallowing)
             {
                 // 判断是否实现了 IPickableItem 接口
-                if (collision.gameObject.GetComponent<IPickableItem>() != null)
+                if (collision.gameObject.GetComponent<PickableItemController>() != null)
                 {
                     PickupItem(collision.gameObject);
                 }
@@ -369,6 +380,12 @@ namespace SeagullSama.Controller
                 return;
             }
 
+            if (_isJumping)
+            {
+                Debug.Log("Can not swallow while jumping");
+                return;
+            }
+
             // 使用协程来处理吞噬技能
             _swallowCoroutine = StartCoroutine(SwallowCoroutine());
             _isSwallowing = true;
@@ -377,6 +394,7 @@ namespace SeagullSama.Controller
         IEnumerator SwallowCoroutine()
         {
             float timer = 0.0f;
+            _rigidbody.isKinematic = true;
 
             while (_swallowInput.IsPressed())
             {
@@ -394,8 +412,15 @@ namespace SeagullSama.Controller
                 foreach (RaycastHit hit in raycastHits)
                 {
                     GameObject hitObject = hit.collider.gameObject;
-
                     if (hitObject == gameObject)
+                    {
+                        continue;
+                    }
+
+                    PickableItemController pickable = hitObject.GetComponent<PickableItemController>();
+
+                    // 只能吸得动等级比自己吞噬等级低的物体,且必须是可以被捡起来的物体
+                    if (pickable == null || pickable.itemSwallowLevel > swallowLevel)
                     {
                         continue;
                     }
@@ -415,6 +440,7 @@ namespace SeagullSama.Controller
                 yield return null;
             }
 
+            _rigidbody.isKinematic = false;
             _isSwallowing = false;
             yield return null;
         }

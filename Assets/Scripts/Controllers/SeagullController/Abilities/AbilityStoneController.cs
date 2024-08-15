@@ -1,27 +1,31 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace SeagullSama.Controller
 {
-    public class AbilityStoneController : MonoBehaviour, IPickableItem
+    public class AbilityStoneController : PickableItemController
     {
         [Header("Configuration"), Tooltip("技能类型")]
-        public EAbilityType AbilityType;
+        public EAbilityType abilityType;
 
         public TextMeshProUGUI abilityNameText;
 
         public EPickableItemType PickableItemType => EPickableItemType.AbilityStone;
 
-        private void Start()
+        public void Start()
         {
-            abilityNameText.text = AbilityType.ToString();
+            if (abilityNameText)
+            {
+                abilityNameText.text = abilityType.ToString() + "\n" + abilityNameText.text;
+            }
         }
 
-        public object GetItem()
+        override public object GetItem()
         {
-            return AbilityType.ToString();
+            return abilityType.ToString();
         }
     }
 }

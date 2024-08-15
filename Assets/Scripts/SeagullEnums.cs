@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SeagullSama.Controller;
 using SeagullSama.Manager;
 using UnityEngine;
@@ -9,16 +10,9 @@ namespace SeagullSama
     {
         GeneralItem,
         AbilityStone,
+        // 奖励分数等
     }
-
-    public interface IPickableItem
-    {
-        public EPickableItemType PickableItemType { get; }
-
-        // 获取 C# 装箱对象
-        public object GetItem();
-    }
-
+    
     public static class AbilityHelper
     {
         public readonly static List<IAbility> AbilityList = new List<IAbility>
