@@ -6,6 +6,7 @@ using UnityEngine;
 using SeagullSama.Manager;
 using SeagullSama.Utility;
 using SeagullSama;
+using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
@@ -66,6 +67,9 @@ namespace SeagullSama.Controller
 
         [Tooltip("着陆检测器")]
         public OnLandDetector onLandDetector;
+
+        [Tooltip("提示标签")]
+        public TextMeshProUGUI propertiesLabel;
 
 
         #region 控制器配置
@@ -186,16 +190,18 @@ namespace SeagullSama.Controller
             _currentJumpCount++;
 
             // 根据跳跃速度跳起来(设置一个向上的冲量)
-            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _rigidbody.isKinematic = false;
+            _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         private void EndJumping()
         {
-            if (!_isJumping)
+            if (!_isJumping || _rigidbody.velocity.y > 0.01f)
             {
                 return;
             }
 
+            _rigidbody.isKinematic = true;
             _isJumping = false;
             _currentJumpCount = 0;
         }
@@ -255,7 +261,7 @@ namespace SeagullSama.Controller
             UpdateRotation();
             UpdateMovement();
 
-            UpdateDebugGizmos();
+            UpdateDebugInformation();
         }
 
         private void UpdateRotation()
@@ -394,9 +400,8 @@ namespace SeagullSama.Controller
         IEnumerator SwallowCoroutine()
         {
             float timer = 0.0f;
-            _rigidbody.isKinematic = true;
 
-            while (_swallowInput.IsPressed())
+            while (_swallowInput.IsPressed() && !_isJumping)
             {
                 Debug.Log("Swallowing... + " + timer);
                 timer += Time.deltaTime;
@@ -440,13 +445,25 @@ namespace SeagullSama.Controller
                 yield return null;
             }
 
-            _rigidbody.isKinematic = false;
             _isSwallowing = false;
             yield return null;
         }
 
-        private void UpdateDebugGizmos()
+        private void UpdateDebugInformation()
         {
+            // 绘制属性
+            if (propertiesLabel)
+            {
+                string text =
+                    "SwallowLevel:\t" + swallowLevel +
+                    "\nSwallowForce:\t" + swallowForce +
+                    "\nSwallowRadius:\t" + swallowRadius +
+                    "\nSwallowDepth:\t" + swallowDepth;
+                propertiesLabel.text = text;
+            }
+
+
+            // 绘制吞噬体积
             if (_isSwallowing)
             {
                 Gizmos.Material = _debugUtility.GetGizmosMaterial(0);

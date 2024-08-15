@@ -2027,37 +2027,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: maxJumpCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: swallowForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: headRotationMax
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702772, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: headRotationMin
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056721848029562778, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056721848029562778, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4913419051640828430, guid: e0565939145da964490b3761784abe69, type: 3}
       propertyPath: m_Name
       value: Seagull
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913419051640828431, guid: e0565939145da964490b3761784abe69, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4913419051640828431, guid: e0565939145da964490b3761784abe69, type: 3}
       propertyPath: m_LocalPosition.x
