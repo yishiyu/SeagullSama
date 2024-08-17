@@ -68,8 +68,14 @@ namespace SeagullSama.Controller
         [Tooltip("着陆检测器")]
         public OnLandDetector onLandDetector;
 
+        [Tooltip("吞噬检测器")]
+        public OnSwallowDetector onSwallowDetector;
+
         [Tooltip("提示标签")]
         public TextMeshProUGUI propertiesLabel;
+
+        [Tooltip("吞噬碰撞器")]
+        public GameObject swallowCollider;
 
 
         #region 控制器配置
@@ -170,6 +176,8 @@ namespace SeagullSama.Controller
             }
 
             onLandDetector.OnLand += EndJumping;
+            onSwallowDetector.OnSwallow += OnSwallowDetected;
+            swallowCollider.SetActive(false);
 
         }
 
@@ -243,14 +251,14 @@ namespace SeagullSama.Controller
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnSwallowDetected(GameObject item)
         {
             if (_isSwallowing)
             {
                 // 判断是否实现了 IPickableItem 接口
-                if (collision.gameObject.GetComponent<PickableItemController>() != null)
+                if (item.GetComponent<PickableItemController>() != null)
                 {
-                    PickupItem(collision.gameObject);
+                    PickupItem(item.gameObject);
                 }
             }
         }
@@ -265,6 +273,12 @@ namespace SeagullSama.Controller
 
         private void UpdateRotation()
         {
+            // 旋转因数
+            if (_isSwallowing)
+            {
+                return;
+            }
+
             // 读取鼠标位置
             Vector2 mouseScreenLocation = _mouseLocationInput.ReadValue<Vector2>();
 
@@ -326,6 +340,11 @@ namespace SeagullSama.Controller
 
         private void UpdateMovement()
         {
+            if (_isSwallowing)
+            {
+                return;
+            }
+
             if (!_isJumping)
             {
                 // 非跳跃状态下,根据输入加速减速
@@ -391,16 +410,28 @@ namespace SeagullSama.Controller
                 return;
             }
 
+            if (_rigidbody.velocity.magnitude > 0.3f)
+            {
+                Debug.Log("Can not swallow while moving");
+                return;
+            }
+
+            _rigidbody.velocity = Vector3.zero;
+            _isMoving = false;
+
             // 使用协程来处理吞噬技能
             _swallowCoroutine = StartCoroutine(SwallowCoroutine());
             _isSwallowing = true;
+            swallowCollider.SetActive(true);
         }
 
         IEnumerator SwallowCoroutine()
         {
             float timer = 0.0f;
 
-            while (_swallowInput.IsPressed() && !_isJumping)
+            swallowCenter.localScale = new Vector3(swallowRadius * 2, swallowRadius * 2, 1);
+
+            while (_swallowInput.IsPressed() && !_isJumping && !_isMoving)
             {
                 Debug.Log("Swallowing... + " + timer);
                 timer += Time.deltaTime;
@@ -409,9 +440,11 @@ namespace SeagullSama.Controller
                 Vector3 center = swallowCenter.position;
 
                 // 向前方扫描一个范围
+                // 使用 SwallowHole Layer
                 RaycastHit[] raycastHits = Physics.SphereCastAll(
                     swallowCenter.position, swallowRadius,
-                    headTransform.forward, swallowDepth);
+                    headTransform.forward, swallowDepth,
+                    LayerMask.GetMask("PickableItem"));
 
                 foreach (RaycastHit hit in raycastHits)
                 {
@@ -458,6 +491,7 @@ namespace SeagullSama.Controller
             }
 
             _isSwallowing = false;
+            swallowCollider.SetActive(false);
             yield return null;
         }
 

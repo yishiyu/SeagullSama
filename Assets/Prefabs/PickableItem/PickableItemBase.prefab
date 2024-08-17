@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2523088932927563413}
   - component: {fileID: 3340294759705472148}
   - component: {fileID: 3093890543385710883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PickableItemBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1131486761945452377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 434.537, y: 291.46072, z: -3.679215}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2291372976915308490}
   - component: {fileID: 6679423617502737458}
   - component: {fileID: 4693320971174809663}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4630525438311901200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ItemMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +285,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7842479298891379060, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7842479298891379066, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
       propertyPath: m_text
       value: 
@@ -301,6 +305,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7842479299887675593, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7842479299887675598, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.2
@@ -308,6 +316,10 @@ PrefabInstance:
     - target: {fileID: 7922151224875505750, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
       propertyPath: m_Name
       value: Billboardlabel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922151224875505750, guid: ac2a19a9acd450c49ac5ad4a7c5595c4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

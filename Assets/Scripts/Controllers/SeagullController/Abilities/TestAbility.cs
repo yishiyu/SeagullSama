@@ -15,7 +15,7 @@ namespace SeagullSama.Controller
         {
             // 使用 AB 包加载资源
             _prefab = SeagullSama.Instance.GetUtility<IAssetUtility>()
-                .LoadAsset<GameObject>("prefabs.assetbundle", "GeneralPickableItem");
+                .LoadAsset<GameObject>("prefabs.assetbundle", "PickableCube");
             // _prefab = Resources.Load<GameObject>("GeneralPickableItem");
 
             // 发射一个物体

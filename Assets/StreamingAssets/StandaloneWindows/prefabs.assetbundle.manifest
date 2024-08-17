@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 929968016
+CRC: 2740196702
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: efe482e5efeebec5b5bfda7c1c43f75c
+    Hash: 6847fab214bd4424dc65aa5e154e3af3
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 979385a037076a203baa7e446a9cebf6
+    Hash: 5714a1eff88f66e8ea48e17b1ee48a3c
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: efe482e5efeebec5b5bfda7c1c43f75c
+    Hash: 6847fab214bd4424dc65aa5e154e3af3
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +29,8 @@ ClassTypes:
 - Class: 48
   Script: {instanceID: 0}
 - Class: 54
+  Script: {instanceID: 0}
+- Class: 64
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
@@ -68,6 +70,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: ff8bf96c1da74d56a44d447b8133825d, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 201cf9123677bca49ba53e6c0e3d3f83, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 213
@@ -98,12 +102,13 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.SpriteState
 Assets:
-- Assets/Prefabs/AbilityStone.prefab
 - Assets/Prefabs/UI/Billboardlabel.prefab
 - Assets/Prefabs/UI/AbilityDetail.prefab
+- Assets/Prefabs/PickableItem/AbilityStone.prefab
 - Assets/Prefabs/UI/PausePanel.prefab
-- Assets/Prefabs/GeneralPickableItem.prefab
+- Assets/Prefabs/PickableItem/PickableItemBase.prefab
 - Assets/Prefabs/Seagull.prefab
+- Assets/Prefabs/PickableItem/PickableCube.prefab
 - Assets/Prefabs/UI/DebugPanel.prefab
 - Assets/Prefabs/UI/AbilityPanel.prefab
 - Assets/Prefabs/UI/TipsPanel.prefab
