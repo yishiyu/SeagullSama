@@ -1,0 +1,111 @@
+ManifestFileVersion: 0
+CRC: 929968016
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: efe482e5efeebec5b5bfda7c1c43f75c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 979385a037076a203baa7e446a9cebf6
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: efe482e5efeebec5b5bfda7c1c43f75c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 99a0b41da024dd54ea2c09775942dba9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 304e1ca16035ff148b3fabcbf3682cb9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: df67db966eeda5f45b94cc37d1473392, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 302d6b755c6902b4d8eb62dbcf1da05d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0285d69ea00241589d1b36937e885d92, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 542ea6dde963578418c5e955d7dc777e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0db9d52c7778dea41a8abd3415aa978f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 589ab3229ca0e1c40b9964522c713460, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bbc5d6299b4e74b489ec8b84629f7906, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ff8bf96c1da74d56a44d447b8133825d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.VertexGradient
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RectOffset
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.AnimationTriggers
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Button/ButtonClickedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ColorBlock
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Navigation
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.SpriteState
+Assets:
+- Assets/Prefabs/AbilityStone.prefab
+- Assets/Prefabs/UI/Billboardlabel.prefab
+- Assets/Prefabs/UI/AbilityDetail.prefab
+- Assets/Prefabs/UI/PausePanel.prefab
+- Assets/Prefabs/GeneralPickableItem.prefab
+- Assets/Prefabs/Seagull.prefab
+- Assets/Prefabs/UI/DebugPanel.prefab
+- Assets/Prefabs/UI/AbilityPanel.prefab
+- Assets/Prefabs/UI/TipsPanel.prefab
+Dependencies:
+- G:/Code/Code/Unity/SeagullSama/Assets/StreamingAssets/StandaloneWindows/resources.assetbundle

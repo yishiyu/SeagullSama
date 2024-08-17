@@ -13,7 +13,10 @@ namespace SeagullSama.Controller
 
         override public void Activate()
         {
-            _prefab = Resources.Load<GameObject>("GeneralPickableItem");
+            // 使用 AB 包加载资源
+            _prefab = SeagullSama.Instance.GetUtility<IAssetUtility>()
+                .LoadAsset<GameObject>("prefabs.assetbundle", "GeneralPickableItem");
+            // _prefab = Resources.Load<GameObject>("GeneralPickableItem");
 
             // 发射一个物体
             GameObject cube = GameObject.Instantiate(

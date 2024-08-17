@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.popcron.gizmos": "https://github.com/popcron/gizmos.git",
+    "com.unity.assetbundlebrowser": "https://github.com/Unity-Technologies/AssetBundles-Browser.git",
     "com.unity.ide.rider": "3.0.31",
     "com.unity.inputsystem": "1.7.0",
     "com.unity.probuilder": "5.2.2",

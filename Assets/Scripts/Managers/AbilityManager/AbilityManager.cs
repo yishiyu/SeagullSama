@@ -95,12 +95,12 @@ namespace SeagullSama.Manager
 
             if (equippedAbilities.Contains(_abilityDict[abilityName]))
             {
-                Debug.LogError($"AbilityManager: Ability {abilityName} is already equipped.");
+                Debug.LogWarning($"AbilityManager: Ability {abilityName} is already equipped.");
                 return false;
             }
 
             equippedAbilities.Add(_abilityDict[abilityName]);
-
+            Debug.Log("AbilityManager: Ability " + abilityName + " equipped.");
             EventBus.Invoke(GameEvents.EquippedAbilitiesChangedEvent);
             return true;
         }
@@ -115,11 +115,12 @@ namespace SeagullSama.Manager
 
             if (!equippedAbilities.Contains(_abilityDict[abilityName]))
             {
-                Debug.LogError($"AbilityManager: Ability {abilityName} is not equipped.");
+                Debug.LogWarning($"AbilityManager: Ability {abilityName} is not equipped.");
                 return false;
             }
 
             equippedAbilities.Remove(_abilityDict[abilityName]);
+            Debug.Log("AbilityManager: Ability " + abilityName + " unequipped.");
             EventBus.Invoke(GameEvents.EquippedAbilitiesChangedEvent);
             return true;
         }

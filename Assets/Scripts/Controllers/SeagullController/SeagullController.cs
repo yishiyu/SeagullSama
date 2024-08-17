@@ -421,15 +421,28 @@ namespace SeagullSama.Controller
                         continue;
                     }
 
-                    PickableItemController pickable = hitObject.GetComponent<PickableItemController>();
+                    // 不断向上查找,直到找到可以被捡起来的物体
+                    GameObject currentObject = hitObject;
+                    PickableItemController pickable = currentObject.GetComponent<PickableItemController>();
+                    while (pickable == null)
+                    {
+                        currentObject = currentObject.transform.parent?.gameObject;
+                        if (currentObject == null)
+                        {
+                            break;
+                        }
+
+                        pickable = currentObject.GetComponent<PickableItemController>();
+                    }
 
                     // 只能吸得动等级比自己吞噬等级低的物体,且必须是可以被捡起来的物体
-                    if (pickable == null || pickable.itemSwallowLevel > swallowLevel)
+                    if (currentObject == null || pickable == null || pickable.itemSwallowLevel > swallowLevel)
                     {
+                        Debug.Log("Can not swallow this item: " + hitObject.name);
                         continue;
                     }
 
-                    Rigidbody hitRigidbody = hitObject.GetComponent<Rigidbody>();
+                    Rigidbody hitRigidbody = currentObject.GetComponent<Rigidbody>();
                     if (hitRigidbody)
                     {
                         // 向中心吸引

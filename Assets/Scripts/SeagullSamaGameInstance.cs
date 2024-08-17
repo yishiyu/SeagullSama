@@ -17,6 +17,7 @@ namespace SeagullSama
             // ================== 注册工具 ==================
             RegisterUtility<IInputUtility>(new InputManager());
             RegisterUtility<IDebugUtility>(new DebugUtility());
+            RegisterUtility<IAssetUtility>(new AssetUtility());
 
             // ================== 注册模型 ==================
 

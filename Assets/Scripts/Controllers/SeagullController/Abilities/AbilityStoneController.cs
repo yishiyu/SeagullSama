@@ -13,6 +13,8 @@ namespace SeagullSama.Controller
 
         public TextMeshProUGUI abilityNameText;
 
+        // 在编辑器中隐藏
+        [HideInInspector]
         public EPickableItemType PickableItemType => EPickableItemType.AbilityStone;
 
         public void Start()
